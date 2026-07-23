@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — main.js (Limpo, Executivo e Sem Exageros)
+   AGN Extintores — main.js (Carrossel Executivo & Funções)
    ============================================================ */
 
 (function () {
@@ -82,6 +82,87 @@
     hero.addEventListener('mouseenter', stopAuto);
     hero.addEventListener('mouseleave', startAuto);
     startAuto();
+  }
+
+  /* ---------- CARROSSEL EXECUTIVO DE PRODUTOS ---------- */
+  var trackEl = document.getElementById('prodTrack');
+  var prevBtn = document.getElementById('prodPrev');
+  var nextBtn = document.getElementById('prodNext');
+  var indicatorsContainer = document.getElementById('prodIndicators');
+
+  if (trackEl && prevBtn && nextBtn) {
+    var cards = Array.prototype.slice.call(trackEl.querySelectorAll('.carousel-card'));
+    var prodIndex = 0;
+
+    function getCardsPerView() {
+      var w = window.innerWidth;
+      if (w <= 640) return 1;
+      if (w <= 992) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      var perView = getCardsPerView();
+      return Math.max(0, cards.length - perView);
+    }
+
+    function updateIndicators() {
+      if (!indicatorsContainer) return;
+      indicatorsContainer.innerHTML = '';
+      var maxIdx = getMaxIndex();
+      for (var i = 0; i <= maxIdx; i++) {
+        (function (index) {
+          var dot = document.createElement('span');
+          dot.className = 'carousel-indicator' + (index === prodIndex ? ' is-active' : '');
+          dot.addEventListener('click', function () {
+            prodIndex = index;
+            renderCarousel();
+          });
+          indicatorsContainer.appendChild(dot);
+        })(i);
+      }
+    }
+
+    function renderCarousel() {
+      var maxIdx = getMaxIndex();
+      if (prodIndex > maxIdx) prodIndex = maxIdx;
+      if (prodIndex < 0) prodIndex = 0;
+
+      var cardWidth = cards[0].offsetWidth + 24; // Width + gap
+      trackEl.style.transform = 'translateX(-' + (prodIndex * cardWidth) + 'px)';
+      updateIndicators();
+    }
+
+    prevBtn.addEventListener('click', function () {
+      prodIndex = Math.max(0, prodIndex - 1);
+      renderCarousel();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      prodIndex = Math.min(getMaxIndex(), prodIndex + 1);
+      renderCarousel();
+    });
+
+    window.addEventListener('resize', renderCarousel, { passive: true });
+    renderCarousel();
+
+    /* Touch Swipe no Carrossel */
+    var touchStartX = 0;
+    trackEl.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    trackEl.addEventListener('touchend', function (e) {
+      var diffX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX < 0) {
+          prodIndex = Math.min(getMaxIndex(), prodIndex + 1);
+        } else {
+          prodIndex = Math.max(0, prodIndex - 1);
+        }
+        renderCarousel();
+      }
+    }, { passive: true });
   }
 
   /* ---------- FORM -> WHATSAPP ---------- */

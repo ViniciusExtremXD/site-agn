@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — ESTILO EXECUTIVO & CORPORATIVO (style.css)
+   AGN Extintores — ESTILO EXECUTIVO & CARROSSEL DE PRODUTOS (style.css)
    Limpo, profissional, alta credibilidade e sem exageros
    ============================================================ */
 
@@ -280,15 +280,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: #FFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 16px;
   box-shadow: var(--shadow-md);
-  max-width: 400px;
+  max-width: 440px;
   width: 100%;
 }
 
 .hero__frame img {
   width: 100%; height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: var(--radius-md);
 }
 
 .hero__nav {
@@ -482,7 +483,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text-muted);
 }
 
-/* ---------- CARDS GRID (SERVIÇOS E PRODUTOS) ---------- */
+/* ---------- CARDS GRID ---------- */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -507,7 +508,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .card__img {
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   background: #F1F5F9;
 }
@@ -551,6 +552,87 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: color 0.15s ease;
 }
 .card__btn:hover { color: var(--primary-hover); }
+
+/* ---------- CARROSSEL EXECUTIVO DE PRODUTOS ---------- */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.carousel-btn {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: #FFF;
+  border: 1px solid var(--border);
+  color: var(--navy);
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--primary);
+  color: #FFF;
+  border-color: var(--primary);
+}
+
+.carousel-btn--prev { left: -20px; }
+.carousel-btn--next { right: -20px; }
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-card {
+  flex: 0 0 calc((100% - 48px) / 3);
+  min-width: 0;
+}
+
+@media (max-width: 992px) {
+  .carousel-card { flex: 0 0 calc((100% - 24px) / 2); }
+}
+
+@media (max-width: 640px) {
+  .carousel-card { flex: 0 0 100%; }
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.carousel-indicator {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-indicator.is-active {
+  background: var(--primary);
+  transform: scale(1.25);
+}
 
 /* ---------- BANNER CORPORATIVO ---------- */
 .banner-cta {
@@ -817,4 +899,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .nav.is-open { display: flex; }
   .nav__cta { margin-left: 0; width: 100%; margin-top: 10px; }
+  .carousel-btn--prev { left: -10px; }
+  .carousel-btn--next { right: -10px; }
 }

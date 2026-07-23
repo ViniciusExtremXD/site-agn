@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" role="img" aria-label="AGN Extintores">
+  <!-- Placeholder vetorial recriado do logotipo AGN. Para usar o arquivo original, salve-o como img/logo.png e troque o src no index.html -->
+  <defs>
+    <linearGradient id="bodyRed" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B01E24"/>
+      <stop offset=".45" stop-color="#C8262C"/>
+      <stop offset="1" stop-color="#9E1B20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- mangueira preta (laço superior) -->
+  <path d="M418 128 C 400 96 340 62 268 60 C 196 58 150 92 150 122 C 150 152 196 168 246 160 C 300 151 366 128 418 128"
+        fill="none" stroke="#3B3B40" stroke-width="13" stroke-linecap="round"/>
+
+  <!-- letras AGN -->
+  <g fill="none" stroke="#3B3B40" stroke-width="54" stroke-linecap="round" stroke-linejoin="round">
+    <!-- A -->
+    <path d="M52 356 L52 262 Q52 210 112 210 L188 210 Q244 210 244 262 L244 356"/>
+    <path d="M52 300 L244 300" stroke-width="40"/>
+    <!-- G (barra entra por tras do extintor) -->
+    <path d="M470 232 Q470 210 440 210 L318 210 Q262 210 262 262 L262 306 Q262 356 318 356 L430 356 Q470 356 470 322 L470 296 L392 296" />
+    <!-- N -->
+    <path d="M496 356 L496 262 Q496 210 556 210 L594 210 Q650 210 650 262 L650 356"/>
+  </g>
+  <!-- brilho sutil nas letras -->
+  <g fill="none" stroke="#C9D2DE" stroke-width="7" stroke-linecap="round" opacity=".85">
+    <path d="M74 258 Q80 232 112 230 L180 230"/>
+    <path d="M290 258 Q296 232 328 230 L420 230"/>
+    <path d="M520 258 Q526 232 558 230 L590 230"/>
+  </g>
+
+  <!-- extintor sobre o G -->
+  <g>
+    <!-- valvula/gatilho -->
+    <path d="M330 118 L398 96 M362 128 L318 156 M362 108 L404 140" stroke="#AEBBCB" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <rect x="348" y="112" width="26" height="34" rx="8" fill="#AEBBCB"/>
+    <!-- manometro -->
+    <circle cx="361" cy="150" r="17" fill="#E9EDF2" stroke="#3B3B40" stroke-width="4"/>
+    <path d="M361 150 L370 141" stroke="#3B3B40" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="361" cy="150" r="3" fill="#3B3B40"/>
+    <!-- gargalo -->
+    <rect x="345" y="166" width="32" height="18" rx="6" fill="#9FADBE"/>
+    <!-- corpo -->
+    <path d="M322 214 Q322 184 361 184 Q400 184 400 214 L400 368 Q400 392 361 392 Q322 392 322 368 Z" fill="url(#bodyRed)"/>
+    <!-- costura vertical -->
+    <path d="M334 200 L334 378 M388 200 L388 378" stroke="#E6B9BB" stroke-width="5" stroke-linecap="round" fill="none" opacity=".9"/>
+    <!-- faixa clara topo -->
+    <path d="M326 208 Q340 194 361 193 Q382 194 396 208" fill="none" stroke="#DCE3EA" stroke-width="6" stroke-linecap="round"/>
+    <!-- base -->
+    <path d="M322 372 Q322 392 361 392 Q400 392 400 372 L400 386 Q400 404 361 404 Q322 404 322 386 Z" fill="#8C8F96"/>
+  </g>
+
+  <!-- EXTINTORES -->
+  <text x="416" y="404" font-family="'Arial Black','Segoe UI',Impact,sans-serif" font-size="40" letter-spacing="4" font-weight="900" fill="#3B3B40">EXTINTORES</text>
+</svg>

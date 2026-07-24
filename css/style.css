@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — SEO SITEMAP & ROBUST MALE FIREFIGHTER (style.css)
+   AGN Extintores — DUAL MARQUEE SERVICES & FAST PRODUCT ROTATION
    ============================================================ */
 
 :root {
@@ -477,7 +477,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
-   ESTÁGIO DE ANIMAÇÃO DO BOMBEIRO ROBUSTO MASCULINO (FUNDO CLARO)
+   ESTÁGIO DE ANIMAÇÃO DO SELO EXECUTIVO (FUNDO CLARO)
    ============================================================ */
 .fire-combat-stage-light {
   position: relative;
@@ -574,7 +574,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .p3 { width: 60px; height: 60px; top: 30px; right: 110px; }
 .p4 { width: 80px; height: 80px; top: 50px; right: 60px; }
 
-/* BOMBEIRO HOMEM ROBUSTO COM EXTINTOR (PROTETOR PERMANECENDO 6 SEGUNDOS) */
+/* SELO EXECUTIVO DE SEGURANÇA E EXTINTOR */
 .firefighter-hero-robust {
   position: absolute;
   inset: 0;
@@ -589,7 +589,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   0%, 40% { opacity: 0; transform: translateY(40px) scale(0.7); }
   45% { opacity: 1; transform: translateY(0) scale(1.05); }
   48% { transform: translateY(0) scale(1); }
-  94% { opacity: 1; transform: translateY(0) scale(1); } /* Permanece por 6 segundos! */
+  94% { opacity: 1; transform: translateY(0) scale(1); }
   100% { opacity: 0; transform: translateY(20px) scale(0.8); }
 }
 
@@ -598,7 +598,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 140px;
 }
 
-/* Badge de Vitória 100% Protegido */
+/* Badge de Vitória Executive */
 .extinguished-badge-light {
   position: absolute;
   bottom: 12px;
@@ -622,6 +622,120 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   54%, 94% { opacity: 1; transform: translateY(0) scale(1); }
   100% { opacity: 0; transform: translateY(10px) scale(0.8); }
 }
+
+/* ============================================================
+   DUAS FILAS DE SERVIÇOS EM MOVIMENTO OPOSTO (MARQUEE)
+   ============================================================ */
+.dual-marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  padding-block: 10px;
+}
+
+.services-row-header {
+  padding-inline: 10px;
+}
+
+.row-label {
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.services-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+}
+
+.marquee-left .marquee-track {
+  animation: marqueeSlideLeft 28s linear infinite;
+}
+.marquee-right .marquee-track {
+  animation: marqueeSlideRight 32s linear infinite;
+}
+
+.services-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeSlideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeSlideRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* CARDS DE SERVIÇO EM FOCO E MACRO VISUAL ESTÚDIO */
+.clean-focus-card {
+  flex: 0 0 340px;
+  width: 340px;
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.clean-focus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.clean-img-focus {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.visual-macro-stage {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
+}
+
+.macro-svg {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease;
+}
+
+.clean-focus-card:hover .macro-svg {
+  transform: scale(1.08);
+}
+
+/* Visual Stage BGs */
+.focus-recarga .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #FEF2F2 100%); }
+.focus-hidro .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F0FDF4 100%); }
+.focus-porta .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F8FAFC 100%); }
+.focus-iluminacao .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #FEFCE8 100%); }
+.focus-sinalizacao .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F0FDF4 100%); }
 
 /* ---------- SEÇÕES EXECUTIVAS ---------- */
 .section {
@@ -834,7 +948,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .service-link:hover { color: var(--primary-hover); }
 
-/* ---------- PRODUTOS (CARROSSEL ULTRA SUAVE) ---------- */
+/* ---------- PRODUTOS (CARROSSEL ULTRA SUAVE & RÁPIDO) ---------- */
 .carousel-wrapper {
   position: relative;
   display: flex;
@@ -876,7 +990,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .c-track {
   display: flex;
   gap: 24px;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-product {
@@ -1295,6 +1409,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
   .card-product { flex: 0 0 calc((100% - 24px) / 2); }
   .banner-inner { flex-direction: column; text-align: center; }
+  .clean-focus-card { flex: 0 0 290px; width: 290px; }
 }
 
 @media (max-width: 768px) {

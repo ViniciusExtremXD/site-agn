@@ -185,7 +185,7 @@
   var nextBtn = document.getElementById('prodNext');
   var dotsContainer = document.getElementById('prodDots');
   var prodTimer = null;
-  var PROD_AUTO_MS = 4000;
+  var PROD_AUTO_MS = 2200;
 
   if (trackEl && prevBtn && nextBtn) {
     var cards = Array.prototype.slice.call(trackEl.querySelectorAll('.card-product'));

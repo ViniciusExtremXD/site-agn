@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=70">
+  <link rel="stylesheet" href="css/style.css?v=80">
 
   <!-- Schema.org Data -->
   <script type="application/ld+json">
@@ -105,6 +105,10 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Navegação principal">
+        <div class="mobile-nav-header">
+          <img src="img/logo.jpg?v=7" alt="AGN Extintores" class="mobile-logo">
+          <button class="mobile-close" id="navClose" aria-label="Fechar menu">✕</button>
+        </div>
         <a href="#home" class="nav-link is-active">Home</a>
         <a href="#empresa" class="nav-link">A Empresa</a>
         <a href="#servicos" class="nav-link">Serviços</a>
@@ -125,9 +129,11 @@
     </div>
   </header>
 
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
   <main>
 
-    <!-- ============ HERO SLIDER PROFISSIONAL COM DISSOLVÊNCIA SUAVE (CROSS-FADE) ============ -->
+    <!-- ============ HERO SLIDER PROFISSIONAL ============ -->
     <section class="hero" id="home">
       <div class="hero-slider" id="heroSlider">
 
@@ -138,14 +144,14 @@
           </div>
           <div class="slide-overlay"></div>
           <div class="container slide-content">
-            <p class="slide-kicker text-reveal"><span class="kicker-dot"></span>Certificação Inmetro & Normas ABNT</p>
-            <h1 class="slide-title text-reveal">
+            <p class="slide-kicker epic-reveal"><span class="kicker-dot"></span>Certificação Inmetro & Normas ABNT</p>
+            <h1 class="slide-title epic-reveal" style="--delay: 0.15s">
               <span class="h-line">Proteção contra incêndio</span>
               <span class="h-line">com <em>rigor técnico</em> e</span>
               <span class="h-line">alta conformidade.</span>
             </h1>
-            <p class="slide-text text-reveal">Venda, recarga e manutenção preventiva de extintores para empresas, condomínios e indústrias em Santa Bárbara d'Oeste e todo o estado.</p>
-            <div class="slide-ctas text-reveal">
+            <p class="slide-text epic-reveal" style="--delay: 0.3s">Venda, recarga e manutenção preventiva de extintores para empresas, condomínios e indústrias em Santa Bárbara d'Oeste e todo o estado.</p>
+            <div class="slide-ctas epic-reveal" style="--delay: 0.45s">
               <a href="#contato" class="btn btn-primary btn-lg btn-pill">
                 <span>Solicitar Orçamento</span>
               </a>
@@ -161,14 +167,14 @@
           </div>
           <div class="slide-overlay"></div>
           <div class="container slide-content">
-            <p class="slide-kicker text-reveal"><span class="kicker-dot"></span>Logística e Coleta no Local</p>
-            <h2 class="slide-title text-reveal">
+            <p class="slide-kicker epic-reveal"><span class="kicker-dot"></span>Logística e Coleta no Local</p>
+            <h2 class="slide-title epic-reveal" style="--delay: 0.15s">
               <span class="h-line">Recarga de extintores e</span>
               <span class="h-line"><em>teste hidrostático</em> sem</span>
               <span class="h-line">desproteger seu imóvel.</span>
             </h2>
-            <p class="slide-text text-reveal">Retirada rápida e agendada com suporte técnico completo para manter seu patrimônio protegido durante todo o processo.</p>
-            <div class="slide-ctas text-reveal">
+            <p class="slide-text epic-reveal" style="--delay: 0.3s">Retirada rápida e agendada com suporte técnico completo para manter seu patrimônio protegido durante todo o processo.</p>
+            <div class="slide-ctas epic-reveal" style="--delay: 0.45s">
               <a href="#contato" class="btn btn-primary btn-lg btn-pill">
                 <span>Agendar Recarga</span>
               </a>
@@ -183,14 +189,14 @@
           </div>
           <div class="slide-overlay"></div>
           <div class="container slide-content">
-            <p class="slide-kicker text-reveal"><span class="kicker-dot"></span>Corpo de Bombeiros SP</p>
-            <h2 class="slide-title text-reveal">
+            <p class="slide-kicker epic-reveal"><span class="kicker-dot"></span>Corpo de Bombeiros SP</p>
+            <h2 class="slide-title epic-reveal" style="--delay: 0.15s">
               <span class="h-line">Regularização de</span>
               <span class="h-line"><em>AVCB e CLCB</em> com</span>
               <span class="h-line">total segurança.</span>
             </h2>
-            <p class="slide-text text-reveal">Assessoria especializada para emissão e renovação de licenças do Corpo de Bombeiros para comércios, indústrias e condomínios.</p>
-            <div class="slide-ctas text-reveal">
+            <p class="slide-text epic-reveal" style="--delay: 0.3s">Assessoria especializada para emissão e renovação de licenças do Corpo de Bombeiros para comércios, indústrias e condomínios.</p>
+            <div class="slide-ctas epic-reveal" style="--delay: 0.45s">
               <a href="#contato" class="btn btn-primary btn-lg btn-pill">
                 <span>Falar com Especialista</span>
               </a>
@@ -210,7 +216,7 @@
     <!-- ============ BARRA DE DIFERENCIAIS AUTÊNTICOS ============ -->
     <section class="diferenciais">
       <div class="container dif-grid">
-        <div class="dif-card text-reveal">
+        <div class="dif-card epic-reveal" style="--delay: 0.1s">
           <div class="dif-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
@@ -220,7 +226,7 @@
           </div>
         </div>
 
-        <div class="dif-card text-reveal">
+        <div class="dif-card epic-reveal" style="--delay: 0.2s">
           <div class="dif-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
@@ -230,7 +236,7 @@
           </div>
         </div>
 
-        <div class="dif-card text-reveal">
+        <div class="dif-card epic-reveal" style="--delay: 0.3s">
           <div class="dif-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
@@ -240,7 +246,7 @@
           </div>
         </div>
 
-        <div class="dif-card text-reveal">
+        <div class="dif-card epic-reveal" style="--delay: 0.4s">
           <div class="dif-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
@@ -256,27 +262,27 @@
     <section class="section" id="empresa">
       <div class="container empresa-grid">
         <div class="empresa-info">
-          <span class="section-tag text-reveal">SOBRE A AGN EXTINTORES</span>
-          <h2 class="section-heading text-reveal">Solidez, rigor técnico e compromisso com a vida</h2>
-          <p class="lead-text text-reveal">A <strong>AGN Extintores</strong> é referência em Santa Bárbara d'Oeste e região na prestação de serviços de engenharia de segurança contra incêndio, venda e manutenção de extintores.</p>
-          <p class="text-reveal">Nossa estrutura conta com bancadas de teste autorizadas, técnicos experientes e frota para recolhimento e entrega, oferecendo tranquilidade a empresários, síndicos e gestores patrimoniais.</p>
+          <span class="section-tag epic-reveal">SOBRE A AGN EXTINTORES</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Solidez, rigor técnico e compromisso com a vida</h2>
+          <p class="lead-text epic-reveal" style="--delay: 0.25s">A <strong>AGN Extintores</strong> é referência em Santa Bárbara d'Oeste e região na prestação de serviços de engenharia de segurança contra incêndio, venda e manutenção de extintores.</p>
+          <p class="epic-reveal" style="--delay: 0.35s">Nossa estrutura conta com bancadas de teste autorizadas, técnicos experientes e frota para recolhimento e entrega, oferecendo tranquilidade a empresários, síndicos e gestores patrimoniais.</p>
 
           <div class="empresa-features">
-            <div class="feat-item text-reveal">
+            <div class="feat-item epic-reveal" style="--delay: 0.4s">
               <span class="feat-check">✓</span>
               <div>
                 <strong>Conformidade Inmetro & NBR</strong>
                 <p>Ensaios de 1º, 2º e 3º níveis executados conforme rígidas normas ABNT.</p>
               </div>
             </div>
-            <div class="feat-item text-reveal">
+            <div class="feat-item epic-reveal" style="--delay: 0.5s">
               <span class="feat-check">✓</span>
               <div>
                 <strong>Atendimento Multisetorial</strong>
                 <p>Indústrias, comércios, hospitais, escolas, condomínios e estabelecimentos comerciais.</p>
               </div>
             </div>
-            <div class="feat-item text-reveal">
+            <div class="feat-item epic-reveal" style="--delay: 0.6s">
               <span class="feat-check">✓</span>
               <div>
                 <strong>Gestão de Validade</strong>
@@ -285,12 +291,12 @@
             </div>
           </div>
 
-          <div class="empresa-ctas text-reveal">
+          <div class="empresa-ctas epic-reveal" style="--delay: 0.7s">
             <a href="#contato" class="btn btn-primary btn-pill">Solicitar Visita Técnica</a>
           </div>
         </div>
 
-        <div class="empresa-card-side text-reveal">
+        <div class="empresa-card-side epic-reveal" style="--delay: 0.3s">
           <div class="seal-box">
             <!-- SELO COM ANIMAÇÃO DE FOGUINHO -->
             <div class="seal-circle">
@@ -325,14 +331,14 @@
     <section class="section section-alt" id="servicos">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag text-reveal">SERVIÇOS TÉCNICOS</span>
-          <h2 class="section-heading text-reveal">Soluções Completas de Combate a Incêndio</h2>
-          <p class="section-desc text-reveal">Executamos todos os ensaios e manutenções exigidos pela legislação vigente.</p>
+          <span class="section-tag epic-reveal">SERVIÇOS TÉCNICOS</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Soluções Completas de Combate a Incêndio</h2>
+          <p class="section-desc epic-reveal" style="--delay: 0.25s">Executamos todos os ensaios e manutenções exigidos pela legislação vigente.</p>
         </div>
 
         <div class="services-grid">
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.1s">
             <div class="service-img">
               <img src="img/fotos/inspecao.jpg?v=7" alt="Inspeção Técnica" loading="lazy">
             </div>
@@ -343,7 +349,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.2s">
             <div class="service-img">
               <img src="img/fotos/recarga.jpg?v=7" alt="Recarga de Extintores" loading="lazy">
             </div>
@@ -354,7 +360,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.3s">
             <div class="service-img">
               <img src="img/fotos/teste-hidro.jpg?v=7" alt="Teste Hidrostático" loading="lazy">
             </div>
@@ -365,7 +371,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.4s">
             <div class="service-img">
               <img src="img/fotos/mangueiras.jpg?v=7" alt="Manutenção de Mangueiras" loading="lazy">
             </div>
@@ -376,7 +382,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.5s">
             <div class="service-img">
               <img src="img/fotos/porta-fogo.jpg?v=7" alt="Portas Corta-Fogo" loading="lazy">
             </div>
@@ -387,7 +393,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.6s">
             <div class="service-img">
               <img src="img/fotos/iluminacao.jpg?v=7" alt="Iluminação de Emergência" loading="lazy">
             </div>
@@ -398,7 +404,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.7s">
             <div class="service-img">
               <img src="img/fotos/sinalizacao.jpg?v=7" alt="Sinalização de Emergência" loading="lazy">
             </div>
@@ -409,7 +415,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.8s">
             <div class="service-img">
               <img src="img/fotos/hidrantes.jpg?v=7" alt="Rede de Hidrantes" loading="lazy">
             </div>
@@ -420,7 +426,7 @@
             </div>
           </article>
 
-          <article class="service-card text-reveal">
+          <article class="service-card epic-reveal" style="--delay: 0.9s">
             <div class="service-img">
               <img src="img/fotos/bombas.jpg?v=7" alt="Bombas de Incêndio" loading="lazy">
             </div>
@@ -435,17 +441,17 @@
       </div>
     </section>
 
-    <!-- ============ PRODUTOS COM CARROSSEL EXECUTIVO ============ -->
+    <!-- ============ PRODUTOS COM CARROSSEL AUTO-ROTATIVO SUAVE ============ -->
     <section class="section" id="produtos">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag text-reveal">CATÁLOGO EXECUTIVO DE PRODUTOS</span>
-          <h2 class="section-heading text-reveal">Equipamentos de Combate a Incêndio</h2>
-          <p class="section-desc text-reveal">Linha completa de produtos novos e certificados para pronta entrega e instalação.</p>
+          <span class="section-tag epic-reveal">CATÁLOGO EXECUTIVO DE PRODUTOS</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Equipamentos de Combate a Incêndio</h2>
+          <p class="section-desc epic-reveal" style="--delay: 0.25s">Linha completa de produtos novos e certificados para pronta entrega e instalação.</p>
         </div>
 
-        <!-- CARROSSEL DE PRODUTOS -->
-        <div class="carousel-wrapper text-reveal">
+        <!-- CARROSSEL AUTO-ROTATIVO -->
+        <div class="carousel-wrapper epic-reveal" style="--delay: 0.35s">
           <button class="c-arrow c-arrow-left" id="prodPrev" aria-label="Anterior">❮</button>
 
           <div class="c-viewport">
@@ -537,14 +543,14 @@
     <section class="section section-alt" id="licenciamento">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag text-reveal">REGULARIZAÇÃO JUNTO AOS BOMBEIROS</span>
-          <h2 class="section-heading text-reveal">Projetos & Licenciamento AVCB / CLCB</h2>
-          <p class="section-desc text-reveal">Sua empresa em dia com as exigências legais do Corpo de Bombeiros de São Paulo.</p>
+          <span class="section-tag epic-reveal">REGULARIZAÇÃO JUNTO AOS BOMBEIROS</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Projetos & Licenciamento AVCB / CLCB</h2>
+          <p class="section-desc epic-reveal" style="--delay: 0.25s">Sua empresa em dia com as exigências legais do Corpo de Bombeiros de São Paulo.</p>
         </div>
 
         <div class="lic-grid">
 
-          <div class="lic-card text-reveal">
+          <div class="lic-card epic-reveal" style="--delay: 0.1s">
             <div class="lic-header">
               <span class="lic-badge">Edificações de Porte</span>
               <h3>AVCB — Auto de Vistoria do Corpo de Bombeiros</h3>
@@ -560,7 +566,7 @@
             </div>
           </div>
 
-          <div class="lic-card text-reveal">
+          <div class="lic-card epic-reveal" style="--delay: 0.25s">
             <div class="lic-header lic-header-accent">
               <span class="lic-badge">Pequeno & Médio Porte</span>
               <h3>CLCB — Certificado de Licenciamento do Corpo de Bombeiros</h3>
@@ -582,7 +588,7 @@
 
     <!-- ============ BANNER CORPORATIVO ============ -->
     <section class="banner-cta">
-      <div class="container banner-inner text-reveal">
+      <div class="container banner-inner epic-reveal">
         <div class="banner-text">
           <h2>Contratos de Manutenção Preventiva para Empresas e Condomínios</h2>
           <p>Esqueça a preocupação com prazos de validade. Monitoramos a sua frota de extintores e realizamos a manutenção programada com total comodidade.</p>
@@ -597,34 +603,34 @@
     <section class="section" id="dicas">
       <div class="container container-narrow">
         <div class="section-header text-center">
-          <span class="section-tag text-reveal">DICAS DE SEGURANÇA</span>
-          <h2 class="section-heading text-reveal">Perguntas Frequentes & Dicas</h2>
-          <p class="section-desc text-reveal">Orientações para manter o patrimônio e a vida em segurança.</p>
+          <span class="section-tag epic-reveal">DICAS DE SEGURANÇA</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Perguntas Frequentes & Dicas</h2>
+          <p class="section-desc epic-reveal" style="--delay: 0.25s">Orientações para manter o patrimônio e a vida em segurança.</p>
         </div>
 
         <div class="accordion">
-          <details class="acc-item text-reveal" open>
+          <details class="acc-item epic-reveal" style="--delay: 0.1s" open>
             <summary class="acc-title">Qual extintor utilizar para cada classe de fogo?</summary>
             <div class="acc-content">
               <p><strong>Classe A</strong> (materiais sólidos como madeira, papel e tecido): indicado Água Pressurizada ou Pó ABC. <strong>Classe B</strong> (líquidos inflamáveis): indicado Pó BC, Pó ABC ou CO₂. <strong>Classe C</strong> (equipamentos elétricos energizados): exige CO₂ ou Pó ABC — <em>nunca utilize água em equipamentos energizados</em>. O pó ABC é o mais abrangente para a maioria dos ambientes.</p>
             </div>
           </details>
 
-          <details class="acc-item text-reveal">
+          <details class="acc-item epic-reveal" style="--delay: 0.2s">
             <summary class="acc-title">Qual a frequência correta para recarga do extintor?</summary>
             <div class="acc-content">
               <p>A recarga deve ser realizada anualmente (a cada 12 meses) ou imediatamente após qualquer utilização, mesmo que parcial. O teste hidrostático (pressão do cilindro) é obrigatório a cada 5 anos.</p>
             </div>
           </details>
 
-          <details class="acc-item text-reveal">
+          <details class="acc-item epic-reveal" style="--delay: 0.3s">
             <summary class="acc-title">Como conservar os extintores no dia a dia?</summary>
             <div class="acc-content">
               <p>Mantenha o extintor instalado em local visível, desobstruído e devidamente sinalizado. Verifique se o manômetro está na faixa verde e se o lacre de segurança está intacto.</p>
             </div>
           </details>
 
-          <details class="acc-item text-reveal">
+          <details class="acc-item epic-reveal" style="--delay: 0.4s">
             <summary class="acc-title">O que é exigido para obtenção do AVCB e CLCB?</summary>
             <div class="acc-content">
               <p>Exige-se quantidade adequada de extintores por área, sinalização de emergência fotoluminescente, iluminação autônoma e laudos de teste. A AGN realiza o levantamento e fornece todos os equipamentos.</p>
@@ -638,13 +644,13 @@
     <section class="section section-alt" id="contato">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag text-reveal">FALE CONOSCO</span>
-          <h2 class="section-heading text-reveal">Solicite seu Orçamento</h2>
-          <p class="section-desc text-reveal">Preencha o formulário abaixo para enviar sua solicitação diretamente ao nosso WhatsApp.</p>
+          <span class="section-tag epic-reveal">FALE CONOSCO</span>
+          <h2 class="section-heading epic-reveal" style="--delay: 0.15s">Solicite seu Orçamento</h2>
+          <p class="section-desc epic-reveal" style="--delay: 0.25s">Preencha o formulário abaixo para enviar sua solicitação diretamente ao nosso WhatsApp.</p>
         </div>
 
         <div class="contato-grid">
-          <div class="contato-info text-reveal">
+          <div class="contato-info epic-reveal" style="--delay: 0.1s">
             <div class="contato-cards">
               <div class="c-card">
                 <strong>Telefone Fixo</strong>
@@ -663,7 +669,7 @@
             </div>
           </div>
 
-          <form class="contato-form text-reveal" id="form-orcamento" novalidate>
+          <form class="contato-form epic-reveal" style="--delay: 0.25s" id="form-orcamento" novalidate>
             <h3>Envie uma Mensagem</h3>
             <p class="form-sub">Sua mensagem será direcionada imediatamente para o nosso atendimento.</p>
 
@@ -687,7 +693,7 @@
         </div>
 
         <!-- MAPA 100% HORIZONTAL LOGO ABAIXO DO FORMULÁRIO -->
-        <div class="contato-map-full text-reveal">
+        <div class="contato-map-full epic-reveal" style="--delay: 0.35s">
           <iframe
             title="Mapa de Localização - AGN Extintores"
             src="https://www.google.com/maps?q=Av.%20Dr.%20Sebasti%C3%A3o%20de%20Paula%20Coelho%2C%20960%2C%20Residencial%20Rochelle%2C%20Santa%20B%C3%A1rbara%20d'Oeste%20-%20SP&output=embed"
@@ -738,6 +744,6 @@
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5 13.9c-.3.8-1.5 1.5-2.1 1.5-.6.1-1.3.1-2-.2a16 16 0 0 1-7.1-6.2c-.8-1.3-1.2-2.8-.4-3.7l.9-1c.3-.3.8-.3 1 0l1.6 2.1c.2.3.2.6 0 .9l-.7.9c.7 1.3 2.3 2.9 3.7 3.5l.9-.8c.2-.2.6-.3.9-.1l2.2 1.3c.3.2.4.6.3.9z"/></svg>
   </a>
 
-  <script src="js/main.js?v=70"></script>
+  <script src="js/main.js?v=80"></script>
 </body>
 </html>

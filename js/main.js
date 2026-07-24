@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — main.js (Cross-fade & Text Animations)
+   AGN Extintores — main.js (Epic Reveals, Auto Product Carousel & Mobile Drawer)
    ============================================================ */
 
 (function () {
@@ -23,7 +23,7 @@
     }
   });
 
-  /* ---------- SCROLL TEXT REVEAL ANIMATIONS ---------- */
+  /* ---------- EPIC SCROLL REVEAL ANIMATIONS ---------- */
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -32,13 +32,13 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
 
-    document.querySelectorAll('.text-reveal').forEach(function (el) {
+    document.querySelectorAll('.epic-reveal').forEach(function (el) {
       revealObserver.observe(el);
     });
   } else {
-    document.querySelectorAll('.text-reveal').forEach(function (el) {
+    document.querySelectorAll('.epic-reveal').forEach(function (el) {
       el.classList.add('is-visible');
     });
   }
@@ -80,22 +80,31 @@
   }
   window.addEventListener('scroll', syncNavLinks, { passive: true });
 
-  /* ---------- MENU MOBILE ---------- */
+  /* ---------- MENU MOBILE DRAWER ---------- */
   var burger = document.getElementById('navToggle');
+  var navClose = document.getElementById('navClose');
   var nav = document.getElementById('nav');
+  var overlay = document.getElementById('mobileOverlay');
 
-  if (burger && nav) {
-    burger.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      burger.classList.toggle('is-open', open);
-      burger.setAttribute('aria-expanded', String(open));
-    });
+  function openMobileNav() {
+    if (nav) nav.classList.add('is-open');
+    if (overlay) overlay.classList.add('is-open');
+    if (burger) burger.setAttribute('aria-expanded', 'true');
+  }
 
+  function closeMobileNav() {
+    if (nav) nav.classList.remove('is-open');
+    if (overlay) overlay.classList.remove('is-open');
+    if (burger) burger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (burger) burger.addEventListener('click', openMobileNav);
+  if (navClose) navClose.addEventListener('click', closeMobileNav);
+  if (overlay) overlay.addEventListener('click', closeMobileNav);
+
+  if (nav) {
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        nav.classList.remove('is-open');
-        burger.classList.remove('is-open');
-      }
+      if (e.target.closest('a')) closeMobileNav();
     });
   }
 
@@ -129,7 +138,7 @@
       var active = i === currentHero;
       s.classList.toggle('is-active', active);
       if (active) {
-        s.querySelectorAll('.text-reveal').forEach(function (el) {
+        s.querySelectorAll('.epic-reveal').forEach(function (el) {
           el.classList.remove('is-visible');
           void el.offsetWidth; // Force reflow
           el.classList.add('is-visible');
@@ -170,11 +179,13 @@
     startHeroAuto();
   }
 
-  /* ---------- CARROSSEL EXECUTIVO DE PRODUTOS ---------- */
+  /* ---------- CARROSSEL EXECUTIVO AUTO-ROTATIVO SUAVE ---------- */
   var trackEl = document.getElementById('prodTrack');
   var prevBtn = document.getElementById('prodPrev');
   var nextBtn = document.getElementById('prodNext');
   var dotsContainer = document.getElementById('prodDots');
+  var prodTimer = null;
+  var PROD_AUTO_MS = 4000;
 
   if (trackEl && prevBtn && nextBtn) {
     var cards = Array.prototype.slice.call(trackEl.querySelectorAll('.card-product'));
@@ -203,6 +214,7 @@
           dot.addEventListener('click', function () {
             prodIndex = index;
             renderCarousel();
+            startProdAuto();
           });
           dotsContainer.appendChild(dot);
         })(i);
@@ -211,26 +223,49 @@
 
     function renderCarousel() {
       var maxIdx = getMaxIndex();
-      if (prodIndex > maxIdx) prodIndex = maxIdx;
-      if (prodIndex < 0) prodIndex = 0;
+      if (prodIndex > maxIdx) prodIndex = 0; // Infinite loop restart
+      if (prodIndex < 0) prodIndex = maxIdx;
 
       var cardWidth = cards[0].offsetWidth + 24; // Largura + gap
       trackEl.style.transform = 'translateX(-' + (prodIndex * cardWidth) + 'px)';
       updateDots();
     }
 
+    function startProdAuto() {
+      stopProdAuto();
+      prodTimer = setInterval(function () {
+        prodIndex++;
+        renderCarousel();
+      }, PROD_AUTO_MS);
+    }
+
+    function stopProdAuto() {
+      if (prodTimer) { clearInterval(prodTimer); prodTimer = null; }
+    }
+
     prevBtn.addEventListener('click', function () {
-      prodIndex = Math.max(0, prodIndex - 1);
+      prodIndex--;
       renderCarousel();
+      startProdAuto();
     });
 
     nextBtn.addEventListener('click', function () {
-      prodIndex = Math.min(getMaxIndex(), prodIndex + 1);
+      prodIndex++;
       renderCarousel();
+      startProdAuto();
     });
+
+    var wrapper = document.querySelector('.carousel-wrapper');
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', stopProdAuto);
+      wrapper.addEventListener('mouseleave', startProdAuto);
+      wrapper.addEventListener('touchstart', stopProdAuto, { passive: true });
+      wrapper.addEventListener('touchend', startProdAuto, { passive: true });
+    }
 
     window.addEventListener('resize', renderCarousel, { passive: true });
     renderCarousel();
+    startProdAuto();
 
     /* Touch Swipe */
     var touchStartX = 0;
@@ -242,11 +277,12 @@
       var diffX = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(diffX) > 40) {
         if (diffX < 0) {
-          prodIndex = Math.min(getMaxIndex(), prodIndex + 1);
+          prodIndex++;
         } else {
-          prodIndex = Math.max(0, prodIndex - 1);
+          prodIndex--;
         }
         renderCarousel();
+        startProdAuto();
       }
     }, { passive: true });
   }

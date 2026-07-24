@@ -1,13 +1,13 @@
 /* ============================================================
-   AGN Extintores — main.js
-   Menu mobile, slider hero, reveal on scroll, form -> WhatsApp
+   AGN Extintores — main.js (Epic Reveals, Auto Product Carousel & Mobile Drawer)
    ============================================================ */
+
 (function () {
   'use strict';
 
   var WHATSAPP_NUMBER = '5519993043187';
 
-  /* ---------- Tracking (GA4) ---------- */
+  /* ---------- GA4 TRACKING ---------- */
   function track(eventName, params) {
     if (typeof gtag === 'function') gtag('event', eventName, params || {});
   }
@@ -23,152 +23,308 @@
     }
   });
 
-  /* ---------- Header sticky shadow ---------- */
-  var header = document.querySelector('.header');
+  /* ---------- EPIC SCROLL REVEAL ANIMATIONS ---------- */
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.epic-reveal').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.epic-reveal').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  /* ---------- BARRA DE PROGRESSO DE SCROLL & HEADER SHADOW ---------- */
+  var header = document.getElementById('header');
+  var scrollProgress = document.getElementById('scrollProgress');
+
   window.addEventListener('scroll', function () {
-    header.classList.toggle('is-scrolled', window.scrollY > 8);
+    var scrollY = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', scrollY > 10);
+
+    if (scrollProgress) {
+      var winScroll = document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      scrollProgress.style.width = scrolled + '%';
+    }
   }, { passive: true });
 
-  /* ---------- Menu mobile ---------- */
-  var burger = document.getElementById('burger');
-  var nav = document.getElementById('nav');
-
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('is-open');
-    burger.classList.toggle('is-open', open);
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-  });
-
-  nav.addEventListener('click', function (e) {
-    if (e.target.closest('a')) {
-      nav.classList.remove('is-open');
-      burger.classList.remove('is-open');
-      burger.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  /* ---------- Link ativo conforme seção visível ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
-  var sections = links
-    .map(function (l) {
-      var hash = l.getAttribute('href');
+  /* ---------- ACTIVE LINK NA ROLAGEM ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = navLinks
+    .map(function (link) {
+      var hash = link.getAttribute('href');
       return hash && hash.charAt(0) === '#' ? document.querySelector(hash) : null;
     })
     .filter(Boolean);
 
-  function syncActiveLink() {
+  function syncNavLinks() {
     var pos = window.scrollY + 120;
-    var current = sections[0];
+    var currentSec = sections[0];
     sections.forEach(function (sec) {
-      if (sec.offsetTop <= pos) current = sec;
+      if (sec.offsetTop <= pos) currentSec = sec;
     });
-    links.forEach(function (l) {
-      l.classList.toggle('is-active', l.getAttribute('href') === '#' + current.id);
+    navLinks.forEach(function (l) {
+      l.classList.toggle('is-active', currentSec && l.getAttribute('href') === '#' + currentSec.id);
     });
   }
-  window.addEventListener('scroll', syncActiveLink, { passive: true });
+  window.addEventListener('scroll', syncNavLinks, { passive: true });
 
-  /* ---------- Hero slider ---------- */
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero__slide'));
-  var dots = Array.prototype.slice.call(document.querySelectorAll('.hero__dot'));
-  var current = 0;
-  var AUTO_MS = 6000;
-  var timer = null;
+  /* ---------- MENU MOBILE DRAWER ---------- */
+  var burger = document.getElementById('navToggle');
+  var navClose = document.getElementById('navClose');
+  var nav = document.getElementById('nav');
+  var overlay = document.getElementById('mobileOverlay');
 
-  function goTo(idx) {
-    current = (idx + slides.length) % slides.length;
-    slides.forEach(function (s, i) { s.classList.toggle('is-active', i === current); });
-    dots.forEach(function (d, i) { d.classList.toggle('is-active', i === current); });
+  function openMobileNav() {
+    if (nav) nav.classList.add('is-open');
+    if (overlay) overlay.classList.add('is-open');
+    if (burger) burger.setAttribute('aria-expanded', 'true');
   }
 
-  function startAuto() {
-    stopAuto();
-    timer = setInterval(function () { goTo(current + 1); }, AUTO_MS);
-  }
-  function stopAuto() {
-    if (timer) { clearInterval(timer); timer = null; }
+  function closeMobileNav() {
+    if (nav) nav.classList.remove('is-open');
+    if (overlay) overlay.classList.remove('is-open');
+    if (burger) burger.setAttribute('aria-expanded', 'false');
   }
 
-  dots.forEach(function (d) {
-    d.addEventListener('click', function () {
-      goTo(parseInt(d.getAttribute('data-goto'), 10));
-      startAuto(); // reinicia contagem após interação
+  if (burger) burger.addEventListener('click', openMobileNav);
+  if (navClose) navClose.addEventListener('click', closeMobileNav);
+  if (overlay) overlay.addEventListener('click', closeMobileNav);
+
+  if (nav) {
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMobileNav();
     });
-  });
+  }
 
-  var hero = document.getElementById('hero');
-  hero.addEventListener('mouseenter', stopAuto);
-  hero.addEventListener('mouseleave', startAuto);
+  /* ---------- HERO SLIDER COM DISSOLVÊNCIA SUAVE (CROSS-FADE) ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero .slide'));
+  var heroPrev = document.getElementById('heroPrev');
+  var heroNext = document.getElementById('heroNext');
+  var heroDotsContainer = document.getElementById('heroDots');
+  var currentHero = 0;
+  var HERO_AUTO_MS = 6000;
+  var heroTimer = null;
 
-  /* ---------- Swipe touch (mobile) ---------- */
-  var touchStartX = 0;
-  var touchStartY = 0;
-  hero.addEventListener('touchstart', function (e) {
-    touchStartX = e.changedTouches[0].clientX;
-    touchStartY = e.changedTouches[0].clientY;
-    stopAuto();
-  }, { passive: true });
-  hero.addEventListener('touchend', function (e) {
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    var dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-      goTo(current + (dx < 0 ? 1 : -1));
-    }
-    startAuto();
-  }, { passive: true });
-
-  startAuto();
-
-  /* ---------- Reveal on scroll ---------- */
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
+  function renderHeroDots() {
+    if (!heroDotsContainer || !slides.length) return;
+    heroDotsContainer.innerHTML = '';
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('span');
+      dot.className = 'hero-dot-item' + (i === currentHero ? ' is-active' : '');
+      dot.addEventListener('click', function () {
+        goToHero(i);
+        startHeroAuto();
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+      heroDotsContainer.appendChild(dot);
+    });
   }
 
-  /* ---------- Form -> WhatsApp ---------- */
-  var form = document.getElementById('form-orcamento');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var nome = form.elements.nome.value.trim();
-    var telefone = form.elements.telefone.value.trim();
-    var mensagem = form.elements.mensagem.value.trim();
-
-    var valid = true;
-    [form.elements.nome, form.elements.telefone, form.elements.mensagem].forEach(function (field) {
-      var ok = field.value.trim().length > 0;
-      field.classList.toggle('is-invalid', !ok);
-      if (!ok) valid = false;
+  function goToHero(idx) {
+    if (!slides.length) return;
+    currentHero = (idx + slides.length) % slides.length;
+    slides.forEach(function (s, i) {
+      var active = i === currentHero;
+      s.classList.toggle('is-active', active);
+      if (active) {
+        s.querySelectorAll('.epic-reveal').forEach(function (el) {
+          el.classList.remove('is-visible');
+          void el.offsetWidth; // Force reflow
+          el.classList.add('is-visible');
+        });
+      }
     });
-    if (!valid) return;
+    renderHeroDots();
+  }
 
-    var texto =
-      'Olá! Vim pelo site da AGN Extintores.\n' +
-      'Nome: ' + nome + '\n' +
-      'Telefone: ' + telefone + '\n' +
-      'Preciso de: ' + mensagem;
+  function startHeroAuto() {
+    stopHeroAuto();
+    heroTimer = setInterval(function () { goToHero(currentHero + 1); }, HERO_AUTO_MS);
+  }
 
-    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
-    track('submit_orcamento', { form_id: 'form-orcamento' });
-    window.open(url, '_blank', 'noopener');
-  });
+  function stopHeroAuto() {
+    if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
+  }
 
-  form.addEventListener('input', function (e) {
-    if (e.target.classList.contains('is-invalid') && e.target.value.trim()) {
-      e.target.classList.remove('is-invalid');
+  if (heroPrev) {
+    heroPrev.addEventListener('click', function () {
+      goToHero(currentHero - 1);
+      startHeroAuto();
+    });
+  }
+
+  if (heroNext) {
+    heroNext.addEventListener('click', function () {
+      goToHero(currentHero + 1);
+      startHeroAuto();
+    });
+  }
+
+  var heroSection = document.getElementById('home');
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', stopHeroAuto);
+    heroSection.addEventListener('mouseleave', startHeroAuto);
+    renderHeroDots();
+    startHeroAuto();
+  }
+
+  /* ---------- CARROSSEL EXECUTIVO AUTO-ROTATIVO SUAVE ---------- */
+  var trackEl = document.getElementById('prodTrack');
+  var prevBtn = document.getElementById('prodPrev');
+  var nextBtn = document.getElementById('prodNext');
+  var dotsContainer = document.getElementById('prodDots');
+  var prodTimer = null;
+  var PROD_AUTO_MS = 2200;
+
+  if (trackEl && prevBtn && nextBtn) {
+    var cards = Array.prototype.slice.call(trackEl.querySelectorAll('.card-product'));
+    var prodIndex = 0;
+
+    function getCardsPerView() {
+      var w = window.innerWidth;
+      if (w <= 640) return 1;
+      if (w <= 992) return 2;
+      return 3;
     }
-  });
 
-  /* ---------- Ano do rodapé ---------- */
-  document.getElementById('ano').textContent = String(new Date().getFullYear());
+    function getMaxIndex() {
+      var perView = getCardsPerView();
+      return Math.max(0, cards.length - perView);
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      var maxIdx = getMaxIndex();
+      for (var i = 0; i <= maxIdx; i++) {
+        (function (index) {
+          var dot = document.createElement('span');
+          dot.className = 'dot-indicator' + (index === prodIndex ? ' is-active' : '');
+          dot.addEventListener('click', function () {
+            prodIndex = index;
+            renderCarousel();
+            startProdAuto();
+          });
+          dotsContainer.appendChild(dot);
+        })(i);
+      }
+    }
+
+    function renderCarousel() {
+      var maxIdx = getMaxIndex();
+      if (prodIndex > maxIdx) prodIndex = 0; // Infinite loop restart
+      if (prodIndex < 0) prodIndex = maxIdx;
+
+      var cardWidth = cards[0].offsetWidth + 24; // Largura + gap
+      trackEl.style.transform = 'translateX(-' + (prodIndex * cardWidth) + 'px)';
+      updateDots();
+    }
+
+    function startProdAuto() {
+      stopProdAuto();
+      prodTimer = setInterval(function () {
+        prodIndex++;
+        renderCarousel();
+      }, PROD_AUTO_MS);
+    }
+
+    function stopProdAuto() {
+      if (prodTimer) { clearInterval(prodTimer); prodTimer = null; }
+    }
+
+    prevBtn.addEventListener('click', function () {
+      prodIndex--;
+      renderCarousel();
+      startProdAuto();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      prodIndex++;
+      renderCarousel();
+      startProdAuto();
+    });
+
+    var wrapper = document.querySelector('.carousel-wrapper');
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', stopProdAuto);
+      wrapper.addEventListener('mouseleave', startProdAuto);
+      wrapper.addEventListener('touchstart', stopProdAuto, { passive: true });
+      wrapper.addEventListener('touchend', startProdAuto, { passive: true });
+    }
+
+    window.addEventListener('resize', renderCarousel, { passive: true });
+    renderCarousel();
+    startProdAuto();
+
+    /* Touch Swipe */
+    var touchStartX = 0;
+    trackEl.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    trackEl.addEventListener('touchend', function (e) {
+      var diffX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX < 0) {
+          prodIndex++;
+        } else {
+          prodIndex--;
+        }
+        renderCarousel();
+        startProdAuto();
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- FORM -> WHATSAPP ---------- */
+  var form = document.getElementById('form-orcamento');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nome = form.elements.nome.value.trim();
+      var telefone = form.elements.telefone.value.trim();
+      var mensagem = form.elements.mensagem.value.trim();
+
+      var valid = true;
+      [form.elements.nome, form.elements.telefone, form.elements.mensagem].forEach(function (field) {
+        var ok = field.value.trim().length > 0;
+        field.classList.toggle('is-invalid', !ok);
+        if (!ok) valid = false;
+      });
+      if (!valid) return;
+
+      var texto =
+        'Olá! Vim pelo site da AGN Extintores.\n' +
+        '• Nome: ' + nome + '\n' +
+        '• Telefone: ' + telefone + '\n' +
+        '• Solicitação: ' + mensagem;
+
+      var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+      track('submit_orcamento', { form_id: 'form-orcamento' });
+      window.open(url, '_blank', 'noopener');
+    });
+
+    form.addEventListener('input', function (e) {
+      if (e.target.classList.contains('is-invalid') && e.target.value.trim()) {
+        e.target.classList.remove('is-invalid');
+      }
+    });
+  }
+
+  /* ---------- ANO NO RODAPÉ ---------- */
+  var anoEl = document.getElementById('ano');
+  if (anoEl) anoEl.textContent = String(new Date().getFullYear());
+
 })();

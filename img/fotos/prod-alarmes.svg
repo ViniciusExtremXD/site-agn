@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad2)"/>
+  <line x1="0" y1="240" x2="400" y2="240" stroke="#CBD5E1" stroke-width="2"/>
+  <rect x="0" y="240" width="400" height="60" fill="#E2E8F0"/>
+
+  <!-- 1. Central de Alarme Digital ABNT -->
+  <g filter="url(#boxShadow)" transform="translate(35, 55)">
+    <rect x="0" y="0" width="115" height="150" rx="10" fill="#0F172A" stroke="#334155" stroke-width="3"/>
+    <!-- Screen Header -->
+    <rect x="12" y="15" width="91" height="65" rx="6" fill="#1E293B"/>
+    <rect x="16" y="19" width="83" height="57" rx="4" fill="#0284C7"/>
+    <text x="57" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="800" fill="#FFF" text-anchor="middle">SISTEMA AGN OK</text>
+    <text x="57" y="52" font-family="'Inter', sans-serif" font-size="8" fill="#E0F2FE" text-anchor="middle">SUPERVISÃO 24H</text>
+    <circle cx="28" cy="63" r="3" fill="#22C55E"/>
+    <text x="36" y="66" font-family="'Inter', sans-serif" font-size="7" fill="#FFF">NORMAL</text>
+    <!-- Keypad Buttons -->
+    <rect x="16" y="90" width="22" height="14" rx="3" fill="#334155"/>
+    <rect x="46" y="90" width="22" height="14" rx="3" fill="#334155"/>
+    <rect x="76" y="90" width="22" height="14" rx="3" fill="#C8262C"/>
+    <rect x="16" y="112" width="22" height="14" rx="3" fill="#334155"/>
+    <rect x="46" y="112" width="22" height="14" rx="3" fill="#334155"/>
+    <rect x="76" y="112" width="22" height="14" rx="3" fill="#22C55E"/>
+    <text x="57" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="700" fill="#94A3B8" text-anchor="middle">CENTRAL DE ALARME</text>
+  </g>
+
+  <!-- Conduit Line -->
+  <line x1="150" y1="130" x2="175" y2="130" stroke="#64748B" stroke-width="4"/>
+
+  <!-- 2. Acionador Manual de Alarme ABNT "INCÊNDIO - QUEBRE O VIDRO" -->
+  <g filter="url(#boxShadow)" transform="translate(175, 75)">
+    <rect x="0" y="0" width="95" height="110" rx="8" fill="#C8262C" stroke="#0F172A" stroke-width="3"/>
+    <!-- Glass Area -->
+    <rect x="12" y="15" width="71" height="52" rx="4" fill="#F8FAFC" stroke="#0F172A" stroke-width="2"/>
+    <rect x="18" y="21" width="59" height="40" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1"/>
+    <!-- Red Push Switch inside -->
+    <circle cx="47" cy="41" r="12" fill="#C8262C"/>
+    <text x="47" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="800" fill="#0F172A" text-anchor="middle">INCÊNDIO</text>
+    <text x="47" y="52" font-family="'Inter', sans-serif" font-size="6" font-weight="700" fill="#FFF" text-anchor="middle">APERTE AQUI</text>
+    <!-- Label Below Glass -->
+    <text x="47" y="82" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="800" fill="#FFF" text-anchor="middle">EM CASO DE INCÊNDIO</text>
+    <text x="47" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="800" fill="#FACC15" text-anchor="middle">QUEBRE O VIDRO</text>
+  </g>
+
+  <!-- Conduit Line -->
+  <line x1="270" y1="130" x2="295" y2="130" stroke="#64748B" stroke-width="4"/>
+
+  <!-- 3. Detector de Fumaça Teto ABNT -->
+  <g filter="url(#boxShadow)" transform="translate(295, 80)">
+    <circle cx="45" cy="50" r="42" fill="#FFF" stroke="#0F172A" stroke-width="3"/>
+    <circle cx="45" cy="50" r="32" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <circle cx="45" cy="50" r="18" fill="#E2E8F0"/>
+    <!-- Red Status LED -->
+    <circle cx="45" cy="40" r="3.5" fill="#EF4444"/>
+    <!-- Sensor Vents -->
+    <line x1="20" y1="50" x2="28" y2="50" stroke="#94A3B8" stroke-width="2"/>
+    <line x1="62" y1="50" x2="70" y2="50" stroke="#94A3B8" stroke-width="2"/>
+    <line x1="45" y1="62" x2="45" y2="70" stroke="#94A3B8" stroke-width="2"/>
+    <text x="45" y="106" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="700" fill="#64748B" text-anchor="middle">DETECTOR ÓPTICO</text>
+  </g>
+</svg>

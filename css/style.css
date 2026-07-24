@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — DUAL MARQUEE SERVICES & FAST PRODUCT ROTATION
+   AGN Extintores — DUAL COMPACT MARQUEE CARDS (style.css)
    ============================================================ */
 
 :root {
@@ -624,12 +624,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
-   DUAS FILAS DE SERVIÇOS EM MOVIMENTO OPOSTO (MARQUEE)
+   DUAS FILAS COMPACTAS COM ROTAÇÃO INFINITA (LISTA ENCADEADA)
    ============================================================ */
 .dual-marquee-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   overflow: hidden;
   padding-block: 10px;
 }
@@ -639,71 +639,75 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .row-label {
-  font-size: 0.825rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: var(--navy);
 }
 
 .services-marquee {
   position: relative;
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   width: max-content;
 }
 
+/* Rotação infinita contínua em lista encadeada */
 .marquee-left .marquee-track {
-  animation: marqueeSlideLeft 28s linear infinite;
+  animation: marqueeLoopLeft 22s linear infinite;
 }
 .marquee-right .marquee-track {
-  animation: marqueeSlideRight 32s linear infinite;
+  animation: marqueeLoopRight 24s linear infinite;
 }
 
 .services-marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 
-@keyframes marqueeSlideLeft {
+@keyframes marqueeLoopLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-@keyframes marqueeSlideRight {
+@keyframes marqueeLoopRight {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
 
-/* CARDS DE SERVIÇO EM FOCO E MACRO VISUAL ESTÚDIO */
-.clean-focus-card {
-  flex: 0 0 340px;
-  width: 340px;
+/* CARDS COMPACTOS (APENAS IMAGEM/VETOR + TÍTULO) */
+.compact-service-card {
+  flex: 0 0 240px;
+  width: 240px;
   background: #FFF;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.clean-focus-card:hover {
+.compact-service-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
 }
 
-.clean-img-focus {
-  position: relative;
-  height: 200px;
+.compact-img-box {
+  width: 100%;
+  height: 125px;
   overflow: hidden;
   background: #F8FAFC;
   display: flex;
@@ -712,30 +716,38 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-bottom: 1px solid var(--border);
 }
 
-.visual-macro-stage {
+.compact-img-box img {
   width: 100%; height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
-}
-
-.macro-svg {
-  width: 150px;
-  height: 150px;
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.clean-focus-card:hover .macro-svg {
+.compact-service-card:hover .compact-img-box img {
   transform: scale(1.08);
 }
 
-/* Visual Stage BGs */
-.focus-recarga .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #FEF2F2 100%); }
-.focus-hidro .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F0FDF4 100%); }
-.focus-porta .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F8FAFC 100%); }
-.focus-iluminacao .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #FEFCE8 100%); }
-.focus-sinalizacao .visual-macro-stage { background: radial-gradient(circle at center, #FFF 0%, #F0FDF4 100%); }
+.compact-svg {
+  width: 120px;
+  height: 120px;
+  transition: transform 0.3s ease;
+}
+
+.compact-service-card:hover .compact-svg {
+  transform: scale(1.1);
+}
+
+.compact-service-card h4 {
+  font-family: var(--font-head);
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  padding: 12px 14px;
+  line-height: 1.35;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ---------- SEÇÕES EXECUTIVAS ---------- */
 .section {
@@ -876,77 +888,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 0.8rem;
   color: var(--text-muted);
 }
-
-/* ---------- SERVIÇOS GRID ---------- */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 28px;
-}
-
-.service-card {
-  background: #FFF;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: #CBD5E1;
-}
-
-.service-img {
-  height: 210px;
-  overflow: hidden;
-  background: #F1F5F9;
-}
-
-.service-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.service-card:hover .service-img img {
-  transform: scale(1.05);
-}
-
-.service-body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.service-body h3 {
-  font-family: var(--font-head);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 8px;
-}
-
-.service-body p {
-  font-size: 0.925rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 18px;
-  flex: 1;
-}
-
-.service-link {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--primary);
-  transition: color 0.15s ease;
-}
-.service-link:hover { color: var(--primary-hover); }
 
 /* ---------- PRODUTOS (CARROSSEL ULTRA SUAVE & RÁPIDO) ---------- */
 .carousel-wrapper {
@@ -1409,7 +1350,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
   .card-product { flex: 0 0 calc((100% - 24px) / 2); }
   .banner-inner { flex-direction: column; text-align: center; }
-  .clean-focus-card { flex: 0 0 290px; width: 290px; }
+  .compact-service-card { flex: 0 0 200px; width: 200px; }
 }
 
 @media (max-width: 768px) {

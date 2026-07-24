@@ -17,9 +17,10 @@
   <meta name="description" content="Proteção contra incêndio com rigor técnico em Santa Bárbara d'Oeste e região. Venda, recarga e manutenção de extintores certificados Inmetro, teste hidrostático, AVCB, CLCB, sinalização e hidrantes.">
   <meta name="keywords" content="extintores, recarga de extintores, manutenção de extintores, mangueiras de incêndio, sinalização de emergência, AVCB, CLCB, Santa Bárbara d'Oeste, AGN Extintores">
   <meta name="author" content="AGN Extintores">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="https://www.agnextintores.com.br/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.agnextintores.com.br/sitemap.xml">
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
@@ -40,9 +41,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=90">
+  <link rel="stylesheet" href="css/style.css?v=100">
 
-  <!-- Schema.org Data -->
+  <!-- Schema.org Data for Google Logo, Sitelinks & Business Info -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,6 +52,7 @@
     "description": "Venda, recarga e manutenção de extintores e equipamentos de combate a incêndio em Santa Bárbara d'Oeste e região.",
     "url": "https://www.agnextintores.com.br/",
     "image": "https://www.agnextintores.com.br/img/logo.jpg",
+    "logo": "https://www.agnextintores.com.br/img/logo.jpg",
     "email": "agnextintores@gmail.com",
     "telephone": "+55-19-3455-3443",
     "address": {
@@ -71,6 +73,22 @@
       { "@type": "ContactPoint", "telephone": "+55-19-3455-3443", "contactType": "customer service", "availableLanguage": "Portuguese" }
     ],
     "areaServed": "Santa Bárbara d'Oeste, Americana, Campinas e região"
+  }
+  </script>
+
+  <!-- Schema.org Sitelinks Navigation List -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "SiteNavigationElement", "position": 1, "name": "Empresa", "url": "https://www.agnextintores.com.br/#empresa" },
+      { "@type": "SiteNavigationElement", "position": 2, "name": "Serviços", "url": "https://www.agnextintores.com.br/#servicos" },
+      { "@type": "SiteNavigationElement", "position": 3, "name": "Produtos", "url": "https://www.agnextintores.com.br/#produtos" },
+      { "@type": "SiteNavigationElement", "position": 4, "name": "Licenciamento AVCB", "url": "https://www.agnextintores.com.br/#licenciamento" },
+      { "@type": "SiteNavigationElement", "position": 5, "name": "Dicas de Segurança", "url": "https://www.agnextintores.com.br/#dicas" },
+      { "@type": "SiteNavigationElement", "position": 6, "name": "Contato", "url": "https://www.agnextintores.com.br/#contato" }
+    ]
   }
   </script>
 </head>
@@ -299,26 +317,23 @@
         <div class="empresa-card-side epic-reveal" style="--delay: 0.3s">
           <div class="seal-box">
 
-            <!-- INTERACTIVE FIREFIGHTER & EXTINQUISHER COMBAT ANIMATION STAGE -->
-            <div class="fire-combat-stage" id="fireCombatStage">
+            <!-- STAGE DA ANIMAÇÃO DO BOMBEIRO MASCULINO E EXTINTOR COM FUNDO DA COR DA PÁGINA -->
+            <div class="fire-combat-stage-light" id="fireCombatStage">
               <!-- Animated Fire Flames -->
-              <svg viewBox="0 0 200 160" class="fire-anim-svg" aria-hidden="true">
-                <!-- Fire Base Glow -->
-                <circle cx="100" cy="130" r="45" class="fire-glow-base"/>
+              <svg viewBox="0 0 200 160" class="fire-anim-svg-light" aria-hidden="true">
+                <circle cx="100" cy="130" r="45" class="fire-glow-light"/>
                 
-                <!-- Wild Outer Flames -->
                 <path class="wild-flame flame-1" d="M100 20 C100 20 60 70 60 115 C60 140 78 150 100 150 C122 150 140 140 140 115 C140 70 100 20 100 20z" fill="#D90429"/>
                 <path class="wild-flame flame-2" d="M85 45 C85 45 50 85 50 120 C50 140 65 148 85 148 C105 148 120 140 120 120 C120 85 85 45 85 45z" fill="#FF4D00"/>
                 <path class="wild-flame flame-3" d="M115 40 C115 40 80 80 80 118 C80 138 95 146 115 146 C135 146 150 138 150 118 C150 80 115 40 115 40z" fill="#FF7B00"/>
                 <path class="wild-flame flame-core" d="M100 70 C100 70 82 100 82 125 C82 138 90 144 100 144 C110 144 118 138 118 125 C118 100 100 70 100 70z" fill="#FFC107"/>
                 
-                <!-- Sparks -->
                 <circle cx="90" cy="40" r="3" class="spark spark-1"/>
                 <circle cx="115" cy="30" r="2.5" class="spark spark-2"/>
                 <circle cx="105" cy="15" r="3.5" class="spark spark-3"/>
               </svg>
 
-              <!-- CO2 Spray Particle Cloud -->
+              <!-- CO2 Spray Cloud -->
               <div class="co2-cloud-spray" aria-hidden="true">
                 <span class="p-cloud p1"></span>
                 <span class="p-cloud p2"></span>
@@ -326,44 +341,52 @@
                 <span class="p-cloud p4"></span>
               </div>
 
-              <!-- Firefighter & Extinguisher Hero Graphic -->
-              <div class="firefighter-hero" aria-hidden="true">
-                <svg viewBox="0 0 140 140" class="firefighter-svg">
-                  <!-- Extinguisher Cylinder -->
-                  <rect x="25" y="55" width="30" height="65" rx="15" fill="#C8262C"/>
-                  <rect x="33" y="42" width="14" height="15" rx="3" fill="#1E293B"/>
-                  <path d="M40 42 L40 28 C40 28 35 25 25 35" stroke="#1E293B" stroke-width="4" fill="none" stroke-linecap="round"/>
-                  <circle cx="48" cy="48" r="4" fill="#E2E8F0"/>
+              <!-- BOMBEIRO HOMEM ROBUSTO COM EXTINTOR E SORRISO -->
+              <div class="firefighter-hero-robust" aria-hidden="true">
+                <svg viewBox="0 0 160 160" class="firefighter-robust-svg">
+                  <!-- Robust Red Fire Extinguisher -->
+                  <rect x="22" y="55" width="34" height="75" rx="17" fill="#C8262C"/>
+                  <rect x="32" y="40" width="14" height="16" rx="3" fill="#0F172A"/>
+                  <path d="M40 40 L40 24 C40 24 35 20 22 30" stroke="#0F172A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+                  <circle cx="48" cy="48" r="4.5" fill="#E2E8F0"/>
+                  <rect x="28" y="75" width="22" height="14" rx="2" fill="#FFF"/>
 
-                  <!-- Smiling Firefighter -->
-                  <!-- Helmet -->
-                  <path d="M75 40 C75 22 95 18 115 40 L122 45 C122 45 100 50 68 45 Z" fill="#EAB308"/>
-                  <rect x="80" y="24" width="28" height="12" rx="4" fill="#C8262C"/>
+                  <!-- Male Robust Firefighter -->
+                  <!-- Helmet (Capacete de Bombeiro com viseira) -->
+                  <path d="M70 38 C70 18 100 14 130 38 L138 44 C138 44 110 50 62 44 Z" fill="#C8262C"/>
+                  <rect x="85" y="16" width="30" height="14" rx="4" fill="#EAB308"/>
+                  <path d="M78 40 Q100 44 122 40" stroke="#0F172A" stroke-width="3" fill="none"/>
 
-                  <!-- Face with friendly smile -->
-                  <circle cx="95" cy="54" r="18" fill="#FDE047"/>
-                  <!-- Eyes -->
-                  <circle cx="89" cy="50" r="2.5" fill="#0F172A"/>
-                  <circle cx="101" cy="50" r="2.5" fill="#0F172A"/>
-                  <!-- Winking & Big Smile -->
-                  <path d="M88 60 Q95 68 102 60" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                  <!-- Male Face (Rosto masculino forte, maxilar definido e sorriso confiante) -->
+                  <path d="M80 38 L120 38 L118 64 Q100 78 82 64 Z" fill="#F87171" opacity="0.15"/>
+                  <path d="M82 38 L118 38 L116 62 C116 72 84 72 84 62 Z" fill="#FED7AA"/>
+                  
+                  <!-- Masculine eyebrows & eyes -->
+                  <path d="M86 46 L96 44" stroke="#0F172A" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M104 44 L114 46" stroke="#0F172A" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="91" cy="50" r="2.5" fill="#0F172A"/>
+                  <circle cx="109" cy="50" r="2.5" fill="#0F172A"/>
 
-                  <!-- Body & Arm leaning on extinguisher -->
-                  <path d="M75 72 C75 72 95 68 115 72 L110 115 L70 115 Z" fill="#1E293B"/>
-                  <!-- Yellow Safety Stripes -->
-                  <rect x="75" y="85" width="38" height="6" fill="#EAB308"/>
-                  <rect x="73" y="100" width="40" height="6" fill="#EAB308"/>
+                  <!-- Confident Male Smile -->
+                  <path d="M90 60 Q100 68 110 60" stroke="#0F172A" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  
+                  <!-- Broad Robust Shoulder & Firefighter Jacket -->
+                  <path d="M65 72 C65 72 100 66 135 72 L132 135 L62 135 Z" fill="#0F172A"/>
+                  <!-- Yellow Safety Reflective Stripes -->
+                  <rect x="65" y="88" width="70" height="7" fill="#EAB308"/>
+                  <rect x="63" y="106" width="72" height="7" fill="#EAB308"/>
 
-                  <!-- Thumb Up / Victory Badge -->
-                  <circle cx="118" cy="78" r="10" fill="#25D366"/>
-                  <path d="M113 78 L117 82 L124 74" stroke="#FFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                  <!-- Arm leaning on extinguisher & Thumbs Up -->
+                  <path d="M68 76 Q45 76 42 62" stroke="#0F172A" stroke-width="12" fill="none" stroke-linecap="round"/>
+                  <circle cx="132" cy="80" r="11" fill="#25D366"/>
+                  <path d="M126 80 L130 84 L138 75" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round"/>
                 </svg>
               </div>
 
               <!-- Extinguished Victory Badge -->
-              <div class="extinguished-badge">
+              <div class="extinguished-badge-light">
                 <span class="shield-icon">🛡️</span>
-                <strong>100% Protegido</strong>
+                <strong>100% Protegido & Auditado</strong>
               </div>
             </div>
 
@@ -384,7 +407,7 @@
       </div>
     </section>
 
-    <!-- ============ SERVIÇOS TÉCNICOS COM FOTOS AUTÊNTICAS REALISTAS ============ -->
+    <!-- ============ SERVIÇOS TÉCNICOS ============ -->
     <section class="section section-alt" id="servicos">
       <div class="container">
         <div class="section-header text-center">
@@ -801,6 +824,6 @@
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5 13.9c-.3.8-1.5 1.5-2.1 1.5-.6.1-1.3.1-2-.2a16 16 0 0 1-7.1-6.2c-.8-1.3-1.2-2.8-.4-3.7l.9-1c.3-.3.8-.3 1 0l1.6 2.1c.2.3.2.6 0 .9l-.7.9c.7 1.3 2.3 2.9 3.7 3.5l.9-.8c.2-.2.6-.3.9-.1l2.2 1.3c.3.2.4.6.3.9z"/></svg>
   </a>
 
-  <script src="js/main.js?v=90"></script>
+  <script src="js/main.js?v=100"></script>
 </body>
 </html>

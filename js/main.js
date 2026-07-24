@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — main.js (Carrossel Executivo & Hero Slider)
+   AGN Extintores — main.js (Motion Reveal & Interações)
    ============================================================ */
 
 (function () {
@@ -23,6 +23,26 @@
     }
   });
 
+  /* ---------- SCROLL REVEAL ANIMATIONS ---------- */
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.motion-reveal').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.motion-reveal').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
   /* ---------- BARRA DE PROGRESSO DE SCROLL & HEADER SHADOW ---------- */
   var header = document.getElementById('header');
   var scrollProgress = document.getElementById('scrollProgress');
@@ -38,6 +58,27 @@
       scrollProgress.style.width = scrolled + '%';
     }
   }, { passive: true });
+
+  /* ---------- ACTIVE LINK NA ROLAGEM ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = navLinks
+    .map(function (link) {
+      var hash = link.getAttribute('href');
+      return hash && hash.charAt(0) === '#' ? document.querySelector(hash) : null;
+    })
+    .filter(Boolean);
+
+  function syncNavLinks() {
+    var pos = window.scrollY + 120;
+    var currentSec = sections[0];
+    sections.forEach(function (sec) {
+      if (sec.offsetTop <= pos) currentSec = sec;
+    });
+    navLinks.forEach(function (l) {
+      l.classList.toggle('is-active', currentSec && l.getAttribute('href') === '#' + currentSec.id);
+    });
+  }
+  window.addEventListener('scroll', syncNavLinks, { passive: true });
 
   /* ---------- MENU MOBILE ---------- */
   var burger = document.getElementById('navToggle');

@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — main.js (Motion Reveal & Interações)
+   AGN Extintores — main.js (Cross-fade & Text Animations)
    ============================================================ */
 
 (function () {
@@ -23,7 +23,7 @@
     }
   });
 
-  /* ---------- SCROLL REVEAL ANIMATIONS ---------- */
+  /* ---------- SCROLL TEXT REVEAL ANIMATIONS ---------- */
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -32,13 +32,13 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.motion-reveal').forEach(function (el) {
+    document.querySelectorAll('.text-reveal').forEach(function (el) {
       revealObserver.observe(el);
     });
   } else {
-    document.querySelectorAll('.motion-reveal').forEach(function (el) {
+    document.querySelectorAll('.text-reveal').forEach(function (el) {
       el.classList.add('is-visible');
     });
   }
@@ -99,7 +99,7 @@
     });
   }
 
-  /* ---------- HERO SLIDER (ESTILO CONDOR / DUTRA) ---------- */
+  /* ---------- HERO SLIDER COM DISSOLVÊNCIA SUAVE (CROSS-FADE) ---------- */
   var slides = Array.prototype.slice.call(document.querySelectorAll('.hero .slide'));
   var heroPrev = document.getElementById('heroPrev');
   var heroNext = document.getElementById('heroNext');
@@ -125,7 +125,17 @@
   function goToHero(idx) {
     if (!slides.length) return;
     currentHero = (idx + slides.length) % slides.length;
-    slides.forEach(function (s, i) { s.classList.toggle('is-active', i === currentHero); });
+    slides.forEach(function (s, i) {
+      var active = i === currentHero;
+      s.classList.toggle('is-active', active);
+      if (active) {
+        s.querySelectorAll('.text-reveal').forEach(function (el) {
+          el.classList.remove('is-visible');
+          void el.offsetWidth; // Force reflow
+          el.classList.add('is-visible');
+        });
+      }
+    });
     renderHeroDots();
   }
 

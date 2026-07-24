@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — EPIC REVEALS, AUTOMATIC CAROUSEL & MOBILE POLISH
+   AGN Extintores — REALISTIC FIRE COMBAT ANIMATION & STYLES
    ============================================================ */
 
 :root {
@@ -251,7 +251,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 99;
 }
 
-/* ---------- HERO SLIDER PROFISSIONAL COM CROSS-FADE SUAVE ---------- */
+/* ---------- HERO SLIDER PROFISSIONAL ---------- */
 .hero {
   position: relative;
   background: var(--navy-dark);
@@ -462,7 +462,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text-muted);
 }
 
-/* ---------- EPIC REVEAL ANIMATIONS (DE BAIXO PARA CIMA ÉPICO) ---------- */
+/* ---------- EPIC REVEAL ANIMATIONS ---------- */
 .epic-reveal {
   opacity: 0;
   transform: translateY(44px) scale(0.98);
@@ -476,47 +476,153 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateY(0) scale(1);
 }
 
-/* ---------- ANIMAÇÃO DE FOGUINHO NO CARD DE QUALIDADE GARANTIDA ---------- */
-@keyframes flameFlicker {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.95;
-  }
-  25% {
-    transform: scale(1.08) rotate(-3deg);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.94) rotate(2deg);
-    opacity: 0.9;
-  }
-  75% {
-    transform: scale(1.05) rotate(-2deg);
-    opacity: 1;
-  }
+/* ============================================================
+   ESTÁGIO DE ANIMAÇÃO INTERATIVA: FOGO vs EXTINTOR & BOMBEIRO
+   ============================================================ */
+.fire-combat-stage {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%);
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 }
 
-@keyframes flamePulseGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.4));
-  }
-  50% {
-    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.8));
-  }
-}
-
-.fire-seal-svg {
+.fire-anim-svg {
+  width: 130px;
+  height: 130px;
   overflow: visible;
+  animation: fireCombatLoop 8s infinite;
 }
 
-.flame-inner {
-  transform-origin: 110px 140px;
-  animation: flameFlicker 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite, flamePulseGlow 2.2s ease-in-out infinite;
+@keyframes fireCombatLoop {
+  0% { opacity: 0; transform: scale(0.3); }
+  10% { opacity: 1; transform: scale(1.1); }
+  25% { transform: scale(1.2) rotate(-2deg); }
+  40% { transform: scale(1.3) rotate(3deg); opacity: 1; }
+  52% { transform: scale(0.7); opacity: 0.8; }
+  58% { transform: scale(0); opacity: 0; }
+  100% { opacity: 0; transform: scale(0); }
 }
 
-.flame-core {
-  transform-origin: 110px 133px;
-  animation: flameFlicker 1.2s ease-in-out infinite reverse;
+/* Fogo selvagem em chamas */
+@keyframes flameFlickerWild {
+  0%, 100% { transform: translateY(0) scaleY(1) rotate(0deg); }
+  25% { transform: translateY(-8px) scaleY(1.15) rotate(-4deg); }
+  50% { transform: translateY(-3px) scaleY(0.92) rotate(3deg); }
+  75% { transform: translateY(-10px) scaleY(1.2) rotate(-2deg); }
+}
+
+.wild-flame {
+  transform-origin: 100px 145px;
+  animation: flameFlickerWild 0.6s ease-in-out infinite alternate;
+}
+
+.flame-1 { animation-delay: 0.1s; }
+.flame-2 { animation-delay: 0.25s; }
+.flame-3 { animation-delay: 0.4s; }
+
+/* Faíscas ascendentes */
+@keyframes sparkRise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-60px) scale(0); opacity: 0; }
+}
+
+.spark { animation: sparkRise 1.2s ease-out infinite; }
+.spark-1 { animation-delay: 0.2s; }
+.spark-2 { animation-delay: 0.5s; }
+.spark-3 { animation-delay: 0.8s; }
+
+.fire-glow-base {
+  fill: rgba(239, 68, 68, 0.35);
+  filter: blur(12px);
+  animation: fireGlowPulse 0.8s ease-in-out infinite alternate;
+}
+@keyframes fireGlowPulse {
+  from { opacity: 0.4; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.25); }
+}
+
+/* Spray de CO2 partículas de neve branca */
+.co2-cloud-spray {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  animation: co2SprayBlast 8s infinite;
+}
+
+@keyframes co2SprayBlast {
+  0%, 45% { opacity: 0; transform: translateX(50px) scale(0.5); }
+  48% { opacity: 1; transform: translateX(0) scale(1.1); }
+  55% { opacity: 0.8; transform: translateX(-20px) scale(1.4); }
+  62% { opacity: 0; transform: translateX(-40px) scale(1.6); }
+  100% { opacity: 0; }
+}
+
+.p-cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  filter: blur(6px);
+}
+.p1 { width: 50px; height: 50px; top: 40px; right: 40px; }
+.p2 { width: 70px; height: 70px; top: 60px; right: 80px; }
+.p3 { width: 60px; height: 60px; top: 30px; right: 110px; }
+.p4 { width: 80px; height: 80px; top: 50px; right: 60px; }
+
+/* Hero Bombeiro & Extintor */
+.firefighter-hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  animation: firefighterHeroEnter 8s infinite;
+}
+
+@keyframes firefighterHeroEnter {
+  0%, 55% { opacity: 0; transform: translateY(40px) scale(0.7); }
+  60% { opacity: 1; transform: translateY(0) scale(1.05); }
+  65% { transform: translateY(0) scale(1); }
+  92% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(20px) scale(0.8); }
+}
+
+.firefighter-svg {
+  width: 120px;
+  height: 120px;
+}
+
+/* Badge de Vitória 100% Protegido */
+.extinguished-badge {
+  position: absolute;
+  bottom: 12px;
+  background: var(--wa);
+  color: #FFF;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  z-index: 7;
+  animation: victoryBadgePop 8s infinite;
+}
+
+@keyframes victoryBadgePop {
+  0%, 62% { opacity: 0; transform: translateY(15px) scale(0.6); }
+  66% { opacity: 1; transform: translateY(0) scale(1.1); }
+  70%, 92% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(10px) scale(0.8); }
 }
 
 /* ---------- SEÇÕES EXECUTIVAS ---------- */
@@ -625,8 +731,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: 100%;
 }
 
-.seal-circle { margin-bottom: 16px; }
-
 .seal-box h3 {
   font-family: var(--font-head);
   font-size: 1.25rem;
@@ -732,7 +836,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .service-link:hover { color: var(--primary-hover); }
 
-/* ---------- PRODUTOS (CARROSSEL SUAVE AUTO-ROTATIVO) ---------- */
+/* ---------- PRODUTOS (CARROSSEL ULTRA SUAVE) ---------- */
 .carousel-wrapper {
   position: relative;
   display: flex;
@@ -774,7 +878,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .c-track {
   display: flex;
   gap: 24px;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-product {

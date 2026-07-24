@@ -1,5 +1,5 @@
 /* ============================================================
-   AGN Extintores — DUAL COMPACT MARQUEE CARDS (style.css)
+   AGN Extintores — STYLE.CSS (Hover Fix & Vertical Contact List)
    ============================================================ */
 
 :root {
@@ -624,14 +624,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
-   DUAS FILAS COMPACTAS COM ROTAÇÃO INFINITA (LISTA ENCADEADA)
+   DUAS FILAS COMPACTAS COM ROTAÇÃO INFINITA & PADDING SEM CORTE
    ============================================================ */
 .dual-marquee-wrapper {
   display: flex;
   flex-direction: column;
   gap: 12px;
   overflow: hidden;
-  padding-block: 10px;
+  padding-block: 8px 16px; /* Evita corte no hover */
 }
 
 .services-row-header {
@@ -650,6 +650,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding-block: 8px 12px; /* Margem extra interna para hover seguro */
   mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
 }
@@ -658,9 +659,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   gap: 20px;
   width: max-content;
+  padding-block: 4px;
 }
 
-/* Rotação infinita contínua em lista encadeada */
 .marquee-left .marquee-track {
   animation: marqueeLoopLeft 22s linear infinite;
 }
@@ -682,7 +683,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   100% { transform: translateX(0); }
 }
 
-/* CARDS COMPACTOS (APENAS IMAGEM/VETOR + TÍTULO) */
+/* CARDS COMPACTOS COM HOVER PERFEITO SEM CORTE */
 .compact-service-card {
   flex: 0 0 240px;
   width: 240px;
@@ -700,7 +701,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .compact-service-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
 }
@@ -727,13 +728,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .compact-svg {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   transition: transform 0.3s ease;
 }
 
 .compact-service-card:hover .compact-svg {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .compact-service-card h4 {
@@ -1166,43 +1167,68 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---------- CONTATO & MAPA LARGURA TOTAL ---------- */
 .contato-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: 36px;
   align-items: start;
 }
 
-.contato-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.contato-info-vertical {
+  height: 100%;
+}
+
+.contact-v-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+  height: 100%;
+  justify-content: center;
+}
+
+.c-v-item {
+  display: flex;
+  align-items: flex-start;
   gap: 16px;
 }
 
-.c-card {
-  background: #FFF;
-  border: 1px solid var(--border);
-  padding: 18px;
-  border-radius: var(--radius-md);
+.c-v-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(200, 38, 44, 0.08);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.c-v-icon svg { width: 22px; height: 22px; }
+
+.c-v-text {
+  display: flex;
+  flex-direction: column;
 }
 
-.c-card-full {
-  grid-column: 1 / -1;
-}
-
-.c-card strong {
-  display: block;
+.c-v-label {
   font-size: 0.775rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.c-card a, .c-card address {
-  font-weight: 600;
+.c-v-val {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text-dark);
-  font-size: 0.95rem;
   font-style: normal;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
+.c-v-val:hover { color: var(--primary); }
 
 .contato-map-full {
   width: 100%;
@@ -1402,7 +1428,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-arrow-right { right: 10px; }
   .c-arrow-left { left: -10px; }
   .c-arrow-right { right: -10px; }
-  .contato-cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

@@ -18,6 +18,9 @@
     var href = link.getAttribute('href');
     if (href.indexOf('wa.me') !== -1) {
       track('click_whatsapp', { link_area: link.closest('[id]') ? link.closest('[id]').id : 'geral' });
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18203149520/i16OCJ6Pm90cENCJ-OdD' });
+      }
     } else if (href.indexOf('tel:') === 0) {
       track('click_telefone', { link_area: link.closest('[id]') ? link.closest('[id]').id : 'geral' });
     }
@@ -313,6 +316,9 @@
 
       var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
       track('submit_orcamento', { form_id: 'form-orcamento' });
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18203149520/k8SKCMMpId0cENCJ-OdD' });
+      }
       window.open(url, '_blank', 'noopener');
     });
 
